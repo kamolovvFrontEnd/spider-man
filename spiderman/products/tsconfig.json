@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "strict": true,              // Включить строгий режим
+    "noImplicitAny": true,       // Предупреждать при использовании any
+    "noUnusedLocals": true,      // Предупреждать об объявленных, но неиспользуемых переменных
+  },
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
