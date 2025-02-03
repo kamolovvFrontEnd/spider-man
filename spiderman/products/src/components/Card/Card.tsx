@@ -3,10 +3,9 @@ import styles from "./Card.module.css";
 
 interface CardProps {
   product: Products;
-  onDelete: () => void;
 }
 
-const Card: React.FC<CardProps> = ({ product, onDelete }) => {
+const Card: React.FC<CardProps> = ({ product }) => {
   return (
     <div className={styles.card}>
       <div>
@@ -27,9 +26,6 @@ const Card: React.FC<CardProps> = ({ product, onDelete }) => {
         >
           Click to read COMICKS
         </a>
-        <div>
-          <button onClick={onDelete}>🗑️</button>
-        </div>
       </div>
     </div>
   );
