@@ -1,13 +1,12 @@
-import { Products } from "../../features/productsSlice.ts";
+import { Products } from "../../interfaces/spiderman.ts";
 import styles from "./Card.module.css";
 
 interface CardProps {
   product: Products;
-  onLike: () => void;
   onDelete: () => void;
 }
 
-const Card: React.FC<CardProps> = ({ product, onLike, onDelete }) => {
+const Card: React.FC<CardProps> = ({ product, onDelete }) => {
   return (
     <div className={styles.card}>
       <div>
@@ -29,12 +28,6 @@ const Card: React.FC<CardProps> = ({ product, onLike, onDelete }) => {
           Click to read COMICKS
         </a>
         <div>
-          <button
-            onClick={onLike}
-            style={{ color: product.liked ? "red" : "black" }}
-          >
-            ❤️
-          </button>
           <button onClick={onDelete}>🗑️</button>
         </div>
       </div>

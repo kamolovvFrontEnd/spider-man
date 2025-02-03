@@ -1,23 +1,9 @@
-import {useEffect} from "react";
 import {useSelector} from "react-redux";
-import {
-    fetchProducts,
-    selectProducts,
-    toggleFavorite,
-    deleteProduct,
-} from "../../features/productsSlice";
-import Card from "../../components/Card/Card";
-import {useProductDispatch} from "../../hook/myDispatch.ts";
+// import Card from "../../components/Card/Card";
 
 const ProductsPage: React.FC = () => {
-    const dispatch = useProductDispatch();
-    const products = useSelector(selectProducts);
     const loading = useSelector((state: any) => state.products.loading);
     const error = useSelector((state: any) => state.products.error);
-
-    useEffect(() => {
-        dispatch(fetchProducts());
-    }, [dispatch]);
 
     if (loading) return <div className="loader"></div>;
     if (error) return <p>Error...</p>;
@@ -35,14 +21,13 @@ const ProductsPage: React.FC = () => {
                     gap: "2rem",
                 }}
             >
-                {products.map((product) => (
-                    <Card
-                        key={product.id}
-                        product={product}
-                        onLike={() => dispatch(toggleFavorite(product.id))}
-                        onDelete={() => dispatch(deleteProduct(product.id))}
-                    />
-                ))}
+                {/*{products.map((product) => (*/}
+                {/*    <Card*/}
+                {/*        key={product.id}*/}
+                {/*        product={product}*/}
+                {/*        onDelete={() => dispatch(deleteProduct(product.id))}*/}
+                {/*    />*/}
+                {/*))}*/}
             </div>
         </div>
     );
