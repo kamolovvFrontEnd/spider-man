@@ -1,12 +1,15 @@
 import React from "react";
 import {Routes, Route} from "react-router-dom";
 import ProductsPage from "./pages/Products/ProdcutsPage";
+import './index.css'
 
 const App: React.FC = () => {
     return (
-        <Routes>
-            <Route path="/" element={<ProductsPage />}/>
-        </Routes>
+        <div>
+            <Routes>
+                <Route path="/" element={<ProductsPage/>}/>
+            </Routes>
+        </div>
     );
 };
 

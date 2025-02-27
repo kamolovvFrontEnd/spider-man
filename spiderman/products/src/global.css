@@ -13,3 +13,14 @@
   animation:l4 1s infinite steps(10);
 }
 @keyframes l4 {to{transform: rotate(1turn)}}
+
+.error {
+  background-color: #bf0a0a;
+  color: white;
+  border-radius: 10px;
+  padding-inline: 2rem;
+  padding-block: 3rem;
+  width: 20rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}

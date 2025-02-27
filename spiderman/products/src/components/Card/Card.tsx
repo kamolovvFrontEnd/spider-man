@@ -17,7 +17,11 @@ const Card: React.FC<CardProps> = ({ product }) => {
         <h3>{product.name}</h3>
       </div>
       <div>
-        <p>{product.description.length > 1 ? product.description : "Just your friendly neighbor - Spidey"}</p>
+        <p>
+          {product.description.length > 1
+            ? product.description
+            : "Just your friendly neighbor - Spidey"}
+        </p>
       </div>
       <div style={{ display: "grid" }}>
         <a
