@@ -1,7 +1,8 @@
 import Card from "../../components/Card/Card";
-import {useEffect, useState} from "react";
-import {Products, Response} from "../../interfaces/spiderman";
+import {useCallback, useEffect, useState} from "react";
+import {Products} from "../../interfaces/spiderman";
 import {getData} from "../../api/api.ts";
+import debounce from "debounce"
 import styles from "./ProductPage.module.css";
 import "../../global.css";
 
@@ -11,13 +12,24 @@ const ProductsPage: React.FC = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState<boolean>(true);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const debounceFetch = useCallback(
+        debounce(async (query?: string) => {
+            if (query) {
+                const data = await getData(query);
+                setProducts(data.data.results)
+            } else {
+                const data = await getData();
+                setProducts(data.data.results)
+            }
+        }, 500), [search]
+    );
+
     useEffect(() => {
         const getProducts = async () => {
             try {
-                const response: Response = await getData(search);
-
                 setLoading(false);
-                setProducts(response.data.results);
+                await debounceFetch(search)
             } catch (error) {
                 setLoading(false);
                 if (error instanceof Error) {
@@ -29,7 +41,7 @@ const ProductsPage: React.FC = () => {
         };
 
         getProducts();
-    }, [search]);
+    }, [debounceFetch, search]);
 
     const showProductsOrError = () => {
         return error ? (
