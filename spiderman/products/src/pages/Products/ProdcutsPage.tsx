@@ -1,10 +1,12 @@
 import Card from "../../components/Card/Card";
-import getData from "../../api/api";
 import {useEffect, useState} from "react";
-import "../../global.css";
 import {Products, Response} from "../../interfaces/spiderman";
+import {getData} from "../../api/api.ts";
+import styles from "./ProductPage.module.css";
+import "../../global.css";
 
 const ProductsPage: React.FC = () => {
+    const [search, setSearch] = useState("");
     const [products, setProducts] = useState<Products[]>([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState<boolean>(true);
@@ -12,7 +14,7 @@ const ProductsPage: React.FC = () => {
     useEffect(() => {
         const getProducts = async () => {
             try {
-                const response: Response = await getData();
+                const response: Response = await getData(search);
 
                 setLoading(false);
                 setProducts(response.data.results);
@@ -27,9 +29,9 @@ const ProductsPage: React.FC = () => {
         };
 
         getProducts();
-    }, []);
+    }, [search]);
 
-    const showProducts = () => {
+    const showProductsOrError = () => {
         return error ? (
             <div className="error"><p>{error}</p></div>
         ) : (
@@ -43,7 +45,11 @@ const ProductsPage: React.FC = () => {
 
     return (
         <div>
-            <h1 className="text-center">Spider universe</h1>
+            <div className="flex justify-around p-5">
+                <h1>Spider universe</h1>
+                <input type="search" value={search} onChange={(e) => setSearch(e.target.value)}
+                       className={styles.search}/>
+            </div>
             <div
                 style={{
                     display: "flex",
@@ -52,7 +58,7 @@ const ProductsPage: React.FC = () => {
                     gap: "2rem",
                 }}
             >
-                {loading ? loader() : showProducts()}
+                {loading ? loader() : showProductsOrError()}
             </div>
         </div>
     );

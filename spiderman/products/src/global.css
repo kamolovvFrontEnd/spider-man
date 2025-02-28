@@ -1,3 +1,6 @@
+@tailwind components;
+@tailwind utilities;
+
 .loader {
   width: 50px;
   --b: 8px; 

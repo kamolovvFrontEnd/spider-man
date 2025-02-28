@@ -1,6 +1,7 @@
 .image {
     width: 300px;
     height: 300px;
+    margin-bottom: 10px;
 }
 
 .card {
@@ -13,10 +14,13 @@
     justify-content: space-between;
     box-shadow: -8px 10px 30px rgba(0, 0, 0, 0.2);
     transition: all ease 1s;
+    text-decoration: none;
+    color: black;
 }
 
 .card:hover { 
-    scale: 1.1;
+    scale: 1.05;
+    box-shadow: -8px 10px 30px rgba(212, 17, 17, 0.2);
 }
 
 .link {
@@ -24,4 +28,9 @@
     text-decoration: none;
     padding: 2px;
     color: red;
+}
+
+.about {
+    color: black;
+    text-decoration: none;
 }
